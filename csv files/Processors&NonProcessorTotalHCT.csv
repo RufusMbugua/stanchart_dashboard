@@ -1,0 +1,13 @@
+Parameter,May-11,Jun-11,Jul-11,Aug-11,Sep-11,Oct-11,Nov-11,Dec-11,Jan-12,Feb-12,Mar-12,Apr-12,May-12
+Employed Worker (FTE), 63 , 64 , 64 , 64 , 65 , 65 , 65 , 65 , 65 , 65 , 66 , 66 , 66 
+Non-employed Worker (NFTE), 5 , 5 , 5 , 5 , 9 , 6 , 6 , 8 , 8 , 8 , 8 , 9 , 11 
+Total HCT, 68 , 69 , 69 , 69 , 74 , 71 , 71 , 73 , 73 , 73 , 74 , 75 , 77 
+No Of Processors, 58 , 58 , 58 , 58 , 60 , 60 , 60 , 62 , 62 , 62 , 63 , 64 , 66 
+No Of Non Processors, 10 , 11 , 11 , 11 , 11 , 11 , 11 , 11 , 11 , 11 , 11 , 11 , 11 
+Total HCT, 68 , 69 , 69 , 69 , 71 , 71 , 71 , 73 , 73 , 73 , 74 , 75 , 77 
+% of Non-employed workforce,7%,7%,7%,7%,12%,8%,8%,11%,11%,11%,11%,12%,14%
+HCT Correctness Check, Yes , Yes , Yes , Yes , No , Yes , Yes , Yes , Yes , Yes , Yes , Yes , Yes 
+No. Of Processors (FTE), 52 , 52 , 52 , 52 , 54 , 54 , 54 , 54 , 54 , 54 , 55 , 55 , 55 
+No. Of Processors (NFTE), 6 , 6 , 6 , 6 , 6 , 6 , 6 , 8 , 8 , 8 , 8 , 9 , 11 
+% of Non-employed workforce,10%,10%,10%,10%,10%,10%,8%,11%,11%,11%,11%,12%,14%
+Processors HCT Correctness Check,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
