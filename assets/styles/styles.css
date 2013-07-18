@@ -1,0 +1,41 @@
+/* CSS Document */
+@font-face {
+	font-family: 'Corbert Regular';
+	src: url('fonts/Corbert_Regular_Regular.otf');
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1.3em;
+}
+
+body {
+	width: 100%;
+	margin: 0;
+	font-family: Corbert Regular;
+	background: white;
+}
+#user{
+	float:right;
+}
+#side_menu{
+	display:inline-block;
+	margin-top:0;
+	width:20%;
+	height:65%;
+}
+.right_content{
+	display:inline-block;
+	width:75%;
+	float:right;
+}
+.tile{
+	display:inline-block;
+	height:30%;
+	margin:0 1% 1% 0;
+}
+
+.small{
+	width:46%;
+}
+.large{
+	width:95.5%;
+}
