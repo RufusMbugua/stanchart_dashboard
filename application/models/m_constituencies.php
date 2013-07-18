@@ -10,9 +10,25 @@ class M_Constituencies extends MY_Model {
 	}
 
 	function getConstituenciesNames() {
-		$constituencies = $this -> em -> createQuery('SELECT c.constituency_id,c.constituency_name FROM models\Entities\e_constituencies c');
-		$this->constituencies=$constituencies->getResult();
-		return $this -> constituencies;
+		
+		$this->em -> getConfiguration() -> setMetadataDriverImpl(new \Doctrine\ORM\Mapping\Driver\DatabaseDriver($this->em -> getConnection() -> getSchemaManager()));
+		$cmf = new Doctrine\ORM\Tools\DisconnectedClassMetadataFactory();
+		$cmf -> setEntityManager($this->em);
+		
+		$metadata = $cmf -> getAllMetadata();
+
+		$cme = new \Doctrine\ORM\Tools\Export\ClassMetadataExporter();
+
+		$entityGenerator = new \Doctrine\ORM\Tools\EntityGenerator();
+		
+		$entityGenerator -> setAnnotationPrefix("");
+		$exporter = $cme -> getExporter('annotation', __DIR__ . '/entities');
+		$exporter -> setEntityGenerator($entityGenerator);
+		$exporter -> setMetadata($metadata);
+		$etg = new \Doctrine\ORM\Tools\EntityGenerator;
+		$exporter -> setEntityGenerator($etg);
+		$exporter -> export();
+		
 	}
 
 }
