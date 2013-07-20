@@ -5,12 +5,12 @@ namespace models\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * models\Entities\DayQueryResolution
+ * models\Entities\Standard&AverageWorkingDays
  *
- * @ORM\Table(name="day_query_resolution")
+ * @ORM\Table(name="standard_&_average_working_days")
  * @ORM\Entity
  */
-class DayQueryResolution
+class Standard&AverageWorkingDays
 {
     /**
      * @var integer $recordid
@@ -134,7 +134,7 @@ class DayQueryResolution
      * Set parameter
      *
      * @param string $parameter
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setParameter($parameter)
     {
@@ -156,7 +156,7 @@ class DayQueryResolution
      * Set may11
      *
      * @param float $may11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setMay11($may11)
     {
@@ -178,7 +178,7 @@ class DayQueryResolution
      * Set june11
      *
      * @param float $june11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setJune11($june11)
     {
@@ -200,7 +200,7 @@ class DayQueryResolution
      * Set july11
      *
      * @param float $july11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setJuly11($july11)
     {
@@ -222,7 +222,7 @@ class DayQueryResolution
      * Set aug11
      *
      * @param float $aug11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setAug11($aug11)
     {
@@ -244,7 +244,7 @@ class DayQueryResolution
      * Set sept11
      *
      * @param float $sept11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setSept11($sept11)
     {
@@ -266,7 +266,7 @@ class DayQueryResolution
      * Set oct11
      *
      * @param float $oct11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setOct11($oct11)
     {
@@ -288,7 +288,7 @@ class DayQueryResolution
      * Set nov11
      *
      * @param float $nov11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setNov11($nov11)
     {
@@ -310,7 +310,7 @@ class DayQueryResolution
      * Set dec11
      *
      * @param float $dec11
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setDec11($dec11)
     {
@@ -332,7 +332,7 @@ class DayQueryResolution
      * Set jan12
      *
      * @param float $jan12
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setJan12($jan12)
     {
@@ -354,7 +354,7 @@ class DayQueryResolution
      * Set feb12
      *
      * @param float $feb12
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setFeb12($feb12)
     {
@@ -376,7 +376,7 @@ class DayQueryResolution
      * Set mar12
      *
      * @param float $mar12
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setMar12($mar12)
     {
@@ -398,7 +398,7 @@ class DayQueryResolution
      * Set apr12
      *
      * @param float $apr12
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setApr12($apr12)
     {
@@ -420,7 +420,7 @@ class DayQueryResolution
      * Set may12
      *
      * @param float $may12
-     * @return DayQueryResolution
+     * @return Standard&AverageWorkingDays
      */
     public function setMay12($may12)
     {
