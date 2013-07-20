@@ -12,16 +12,16 @@ class C_Front extends CI_Controller {
 
 	public function index() {
 		$this->load->model('m_constituencies');
-		$this->m_constituencies->getConstituenciesNames();
-		/*
+	//	$this->m_constituencies->getConstituenciesNames();
+		
 		$this -> load -> library('carabiner');
 		
-		 *
-		 $this -> load -> library('Github_updater');
-		 * $gitUpdate=$this->github_updater->has_update();
-		 if($gitUpdate==TRUE){
-		 $this->github_updater->update();
-		 }
+		
+		// $this -> load -> library('Github_updater');
+		// $gitUpdate=$this->github_updater->has_update();
+		// if($gitUpdate==TRUE){
+		// $this->github_updater->update();
+		 //}
 		 
 
 		$this -> carabiner -> empty_cache();
@@ -42,8 +42,8 @@ class C_Front extends CI_Controller {
 		$data['reports'] = 'poverty reports';
 		$data['summaries'] = '';
 		$this -> load -> view('template', $data);
-		 * 
-		 */
+		 
+		 
 	}
 
 }
