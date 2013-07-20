@@ -11,6 +11,7 @@ class C_Front extends CI_Controller {
 	}
 
 	public function index() {
+
 		$this->load->model('m_constituencies');
 	//	$this->m_constituencies->getConstituenciesNames();
 		
@@ -22,8 +23,21 @@ class C_Front extends CI_Controller {
 		// if($gitUpdate==TRUE){
 		// $this->github_updater->update();
 		 //}
-		 
 
+	//	$this->load->model('M_AbsoluteVolumeOrProcessingHeadcount');
+		//$this->M_AbsoluteVolumeOrProcessingHeadcount->getResult();
+		
+		$this -> load -> library('carabiner');
+		/*
+		 *
+		 $this -> load -> library('Github_updater');
+		 * $gitUpdate=$this->github_updater->has_update();
+		 if($gitUpdate==TRUE){
+		 $this->github_updater->update();
+		 }
+>>>>>>> 24a321f3e80dd1c22612e38ecacc316eb00ca559
+		 
+*/
 		$this -> carabiner -> empty_cache();
 		// add a js file
 		//$jsArray = array( array('jquery.js'), array('highcharts/highcharts.js'), array('datatable/jquery.dataTables.js'), array('jquery.multiselect.js'),array('Merged_JS.js'));
@@ -42,8 +56,10 @@ class C_Front extends CI_Controller {
 		$data['reports'] = 'poverty reports';
 		$data['summaries'] = '';
 		$this -> load -> view('template', $data);
+
 		 
 		 
+
 	}
 
 }

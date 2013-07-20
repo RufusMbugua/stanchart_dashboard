@@ -1,9 +1,11 @@
 <?php
 
-
 namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * VolumesVsWeightedVolumes
+ * models\Entities\VolumesVsWeightedVolumes
  *
  * @ORM\Table(name="volumes_vs_weighted_volumes")
  * @ORM\Entity
@@ -118,4 +120,321 @@ class VolumesVsWeightedVolumes
     private $may12;
 
 
+    /**
+     * Get recordid
+     *
+     * @return integer 
+     */
+    public function getRecordid()
+    {
+        return $this->recordid;
+    }
+
+    /**
+     * Set parameter
+     *
+     * @param string $parameter
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setParameter($parameter)
+    {
+        $this->parameter = $parameter;
+        return $this;
+    }
+
+    /**
+     * Get parameter
+     *
+     * @return string 
+     */
+    public function getParameter()
+    {
+        return $this->parameter;
+    }
+
+    /**
+     * Set may11
+     *
+     * @param float $may11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setMay11($may11)
+    {
+        $this->may11 = $may11;
+        return $this;
+    }
+
+    /**
+     * Get may11
+     *
+     * @return float 
+     */
+    public function getMay11()
+    {
+        return $this->may11;
+    }
+
+    /**
+     * Set june11
+     *
+     * @param float $june11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setJune11($june11)
+    {
+        $this->june11 = $june11;
+        return $this;
+    }
+
+    /**
+     * Get june11
+     *
+     * @return float 
+     */
+    public function getJune11()
+    {
+        return $this->june11;
+    }
+
+    /**
+     * Set july11
+     *
+     * @param float $july11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setJuly11($july11)
+    {
+        $this->july11 = $july11;
+        return $this;
+    }
+
+    /**
+     * Get july11
+     *
+     * @return float 
+     */
+    public function getJuly11()
+    {
+        return $this->july11;
+    }
+
+    /**
+     * Set aug11
+     *
+     * @param float $aug11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setAug11($aug11)
+    {
+        $this->aug11 = $aug11;
+        return $this;
+    }
+
+    /**
+     * Get aug11
+     *
+     * @return float 
+     */
+    public function getAug11()
+    {
+        return $this->aug11;
+    }
+
+    /**
+     * Set sept11
+     *
+     * @param float $sept11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setSept11($sept11)
+    {
+        $this->sept11 = $sept11;
+        return $this;
+    }
+
+    /**
+     * Get sept11
+     *
+     * @return float 
+     */
+    public function getSept11()
+    {
+        return $this->sept11;
+    }
+
+    /**
+     * Set oct11
+     *
+     * @param float $oct11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setOct11($oct11)
+    {
+        $this->oct11 = $oct11;
+        return $this;
+    }
+
+    /**
+     * Get oct11
+     *
+     * @return float 
+     */
+    public function getOct11()
+    {
+        return $this->oct11;
+    }
+
+    /**
+     * Set nov11
+     *
+     * @param float $nov11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setNov11($nov11)
+    {
+        $this->nov11 = $nov11;
+        return $this;
+    }
+
+    /**
+     * Get nov11
+     *
+     * @return float 
+     */
+    public function getNov11()
+    {
+        return $this->nov11;
+    }
+
+    /**
+     * Set dec11
+     *
+     * @param float $dec11
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setDec11($dec11)
+    {
+        $this->dec11 = $dec11;
+        return $this;
+    }
+
+    /**
+     * Get dec11
+     *
+     * @return float 
+     */
+    public function getDec11()
+    {
+        return $this->dec11;
+    }
+
+    /**
+     * Set jan12
+     *
+     * @param float $jan12
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setJan12($jan12)
+    {
+        $this->jan12 = $jan12;
+        return $this;
+    }
+
+    /**
+     * Get jan12
+     *
+     * @return float 
+     */
+    public function getJan12()
+    {
+        return $this->jan12;
+    }
+
+    /**
+     * Set feb12
+     *
+     * @param float $feb12
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setFeb12($feb12)
+    {
+        $this->feb12 = $feb12;
+        return $this;
+    }
+
+    /**
+     * Get feb12
+     *
+     * @return float 
+     */
+    public function getFeb12()
+    {
+        return $this->feb12;
+    }
+
+    /**
+     * Set mar12
+     *
+     * @param float $mar12
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setMar12($mar12)
+    {
+        $this->mar12 = $mar12;
+        return $this;
+    }
+
+    /**
+     * Get mar12
+     *
+     * @return float 
+     */
+    public function getMar12()
+    {
+        return $this->mar12;
+    }
+
+    /**
+     * Set apr12
+     *
+     * @param float $apr12
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setApr12($apr12)
+    {
+        $this->apr12 = $apr12;
+        return $this;
+    }
+
+    /**
+     * Get apr12
+     *
+     * @return float 
+     */
+    public function getApr12()
+    {
+        return $this->apr12;
+    }
+
+    /**
+     * Set may12
+     *
+     * @param float $may12
+     * @return VolumesVsWeightedVolumes
+     */
+    public function setMay12($may12)
+    {
+        $this->may12 = $may12;
+        return $this;
+    }
+
+    /**
+     * Get may12
+     *
+     * @return float 
+     */
+    public function getMay12()
+    {
+        return $this->may12;
+    }
 }
