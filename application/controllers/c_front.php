@@ -61,21 +61,6 @@ class C_Front extends CI_Controller {
 		 
 
 	}
-public function processorsnonprocessors(){
-	//$this->load->model('m_processorsNonProcessorsTotalHct');
-	
-	$query = $this->db->get('processors_&_non_processors_total_hct');
-	
-	foreach ($query->result() as $row)
-{
-    echo $row->parameter;
-}
-	//var_dump($query);
-	
-	//$this->m_processorsNonProcessorsTotalHct->getProcessorsNonProcessors();
-	
-	
-	
-}
+
 }
 ?>

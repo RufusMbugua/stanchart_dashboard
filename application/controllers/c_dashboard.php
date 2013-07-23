@@ -15,7 +15,7 @@ class C_Dashboard extends CI_Controller {
 			$table_data = $this -> generate($month, $year, $table);
 			$data[$table] = $table_data;
 		}
-		echo json_encode($data);
+		echo json_encode($data)."</br>";
 	}
 
 	public function generate($month = "", $year = "", $table = "") {
@@ -29,6 +29,38 @@ class C_Dashboard extends CI_Controller {
 		$results = $query -> result_array();
 		return $results;
 	}
+	
+	public function processorsnonprocessorsgraph(){
+	$sql = "select * from `processors_&_non_processors_total_hct` where recordID=4";
+	$sql2 = "select * from `processors_&_non_processors_total_hct` where recordID=5";		
+		
+	$query = $this -> db -> query($sql);
+	$results = $query -> result_array();
+	$query2 = $this -> db -> query($sql2);
+	$results2 = $query2 -> result_array();
+	
+		
+			//$table_list = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12","may_12");
+		//echo array_keys($results);
+		foreach ($query->result() as $row) {
+
+			//$processors[] = $row;
+			echo json_encode($row);
+
+			
+		}
+		foreach ($query2->result() as $row) {
+
+			echo json_encode($row);
+			
+
+		}
+
+			
+		 //$processors = json_encode($processors);
+		 
+	
+}
 
 }
 ?>
