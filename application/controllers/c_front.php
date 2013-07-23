@@ -44,6 +44,16 @@ class C_Front extends CI_Controller {
 		$this -> load -> view('template', $data);
 		
 	}
-
+public function generate($month = "", $year = "", $table = "") {
+		$results = "";
+		$month = strtolower($month);
+		$date = date($year . "-" . $month . "-01");
+		$column = strtolower(date('M_y', strtotime($date)));
+		$column = "parameter," . $column . " as total";
+		$sql = "select $column from `$table`";
+		$query = $this -> db -> query($sql);
+		$results = $query -> result_array();
+		return $results;
+	}
 }
 ?>
