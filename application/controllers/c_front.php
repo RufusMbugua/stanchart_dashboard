@@ -27,7 +27,7 @@ class C_Front extends CI_Controller {
 	//	$this->load->model('M_AbsoluteVolumeOrProcessingHeadcount');
 		//$this->M_AbsoluteVolumeOrProcessingHeadcount->getResult();
 		
-		$this -> load -> library('carabiner');
+		//$this -> load -> library('carabiner');
 		/*
 		 *
 		 $this -> load -> library('Github_updater');
@@ -61,6 +61,16 @@ class C_Front extends CI_Controller {
 		 
 
 	}
-
+public function generate($month = "", $year = "", $table = "") {
+		$results = "";
+		$month = strtolower($month);
+		$date = date($year . "-" . $month . "-01");
+		$column = strtolower(date('M_y', strtotime($date)));
+		$column = "parameter," . $column . " as total";
+		$sql = "select $column from `$table`";
+		$query = $this -> db -> query($sql);
+		$results = $query -> result_array();
+		return $results;
+	}
 }
 ?>
