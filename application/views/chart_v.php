@@ -89,7 +89,24 @@ if($resultArraySize>25){
 		});
 </script>
 <div class="graph">
-	<div id="<?php echo $container?>"  style="width:98%"  '>
+	Table List
+	<select id="table_name">
+		<?php
+		 foreach($table_list as $table){
+		 	echo "<option value='$table'>$table</option>";
+		 }
+		?>
+	</select>
+	<input type="button" id="go" value="Go" />
+	<div id="<?php echo $container;?>"  style="width:98%"  '>
 </div>
 </div>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#table_name").val("<?php echo $chartTitle; ?>");
+		$("#go").click(function(){
+			var table_name=$("#table_name").val();
+			window.location="<?php echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(table_name);
+		});
+	});
+</script>

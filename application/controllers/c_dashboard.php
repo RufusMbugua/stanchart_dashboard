@@ -7,191 +7,62 @@ class C_Dashboard extends CI_Controller {
 		$data = array();
 	}
 
-	public function generate($month = "", $year = "", $table = "", $dataset = '') {
-		$results = "";
-		$month = strtolower($month);
-		$date = date($year . "-" . $month . "-01");
-		$column = strtolower(date('M_y', strtotime($date)));
-		$column = "parameter," . $column . " as total";
-		$sql = "select $column from `$table`";
-		$sql = "select *  from `$table` WHERE parameter='$dataset'";
+	public function index() {
+		$this -> getChart();
+	}
+
+	public function getColumns($table = "") {
+		$sql = "desc `$table`";
+		$columns = array();
 		$query = $this -> db -> query($sql);
 		$results = $query -> result_array();
-		$monthArray = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12", "may_12");
+		$del_firstval = "recordID";
+		$del_secondval = "parameter";
+		foreach ($results as $value) {
+			if ($value['Field'] == $del_firstval) {
+				unset($value['Field']);
+			} else if ($value['Field'] == $del_secondval) {
+				unset($value['Field']);
+			} else {
+				$columns[] = $value['Field'];
+			}
 
-		foreach ($results as $key => $value) {
-			foreach ($monthArray as $month) {
-				if ($key == $month) {
-					$name = $dataset;
-					$data[] = (double)$value[$month];
+		}
+		return $columns;
+	}
+
+	public function getChart($table = "24_hour_query_resolution") {
+		$table = str_replace("%26", "&", $table);
+		$columns = $this -> getColumns($table);
+		$sql = "select * from `$table`";
+		$query = $this -> db -> query($sql);
+		$results = $query -> result_array();
+		$series = array();
+		$total_series = array();
+		foreach ($results as $key => $result) {
+			foreach ($result as $column => $value) {
+				foreach ($columns as $month) {
+					if ($column == $month) {
+						$table_data[] = (double)$value;
+					}
 				}
 			}
+			$series = array('name' => $result['parameter'], 'data' => $table_data);
+			$total_series[] = $series;
+			unset($table_data);
 		}
-		$results = array('name' => $name, 'data' => $data);
-		return $results;
-		//$monthArray = array("may_11","june_11,"july_11","aug_11","sept_11"","oct_11","nov_11","dec_11","jan_12","feb_12","mar_12","apr_12","may_12");
-		//$monthCounter=0;
-
-		/*
-		 foreach($results as $result){
-		 $monthval=$monthArray[$monthCounter];
-		 $name[]=$result['parameter'];
-		 $data[]=$result[$monthval];
-		 $monthCounter++;
-
-		 }
-		 $results = array('name'=>$name,"data"=>$data);
-
-		 * *
-		 */
-	}
-
-	public function DayQuery($month = "04", $year = 2012) {
-		$monthArray = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12", "may_12");
-
-		//Array List of all Tables
-		//$table_list = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
-		//Loop through Tables and generate Charts foreach
-		$table = '24_hour_query_resolution';
-
-		$table_data[] = $this -> generate($month, $year, $table, 'Total No. Of Helpline Queries');
-		$table_data[] = $this -> generate($month, $year, $table, '24Hrs resolution');
-		$table_data[] = $this -> generate($month, $year, $table, '% 24Hr Resolution');
-
-		$results = json_encode($table_data);
-
+		$results = json_encode($total_series);
 		$resultArraySize = 10;
 		$data['resultArraySize'] = $resultArraySize;
 		$data['container'] = 'chart_expiry';
 		$data['chartType'] = 'line';
-		$data['title'] = 'Chart';
+		$data['title'] = 'Stanchart Dashboard';
 		$data['chartTitle'] = $table;
-		$data['categories'] = json_encode($monthArray);
-		$data['yAxis'] = 'Drugs';
+		$data['categories'] = json_encode($columns);
+		$data['yAxis'] = 'Quantity';
 		$data['resultArray'] = $results;
+		$data['table_list'] = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
 		$this -> load -> view('chart_v', $data);
-		//$data[$table] = $table_data;
-
-		//echo json_encode($data);
-	}
-
-	public function AbsoluteVolume($month = "04", $year = 2012) {
-		$monthArray = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12", "may_12");
-
-		//Array List of all Tables
-		//$table_list = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
-		//Loop through Tables and generate Charts foreach
-		$table = 'absolute_volume_or_processing_headcount';
-
-		$table_data[] = $this -> generate($month, $year, $table, 'Absolute Volume/Processing Head Count');
-
-		$results = json_encode($table_data);
-
-		$resultArraySize = 10;
-		$data['resultArraySize'] = $resultArraySize;
-		$data['container'] = 'chart_expiry';
-		$data['chartType'] = 'bar';
-		$data['title'] = 'Chart';
-		$data['chartTitle'] = $table;
-		$data['categories'] = json_encode($monthArray);
-		$data['yAxis'] = 'Drugs';
-		$data['resultArray'] = $results;
-		$this -> load -> view('chart_v', $data);
-		//$data[$table] = $table_data;
-
-		//echo json_encode($data);
-	}
-
-	public function ActivityVolume($month = "04", $year = 2012) {
-		$monthArray = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12", "may_12");
-
-		//Array List of all Tables
-		//$table_list = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
-		//Loop through Tables and generate Charts foreach
-		$table = 'activity_volume_by_country';
-
-		$table_data[] = $this -> generate($month, $year, $table, 'KEN');
-		$table_data[] = $this -> generate($month, $year, $table, 'UGA');
-		$table_data[] = $this -> generate($month, $year, $table, 'TZA');
-		$table_data[] = $this -> generate($month, $year, $table, 'ZAM');
-		$table_data[] = $this -> generate($month, $year, $table, 'BOT');
-		$table_data[] = $this -> generate($month, $year, $table, 'ZAR');
-
-		$results = json_encode($table_data);
-
-		$resultArraySize = 10;
-		$data['resultArraySize'] = $resultArraySize;
-		$data['container'] = 'chart_expiry';
-		$data['chartType'] = 'line';
-		$data['title'] = 'Chart';
-		$data['chartTitle'] = $table;
-		$data['categories'] = json_encode($monthArray);
-		$data['yAxis'] = 'Drugs';
-		$data['resultArray'] = $results;
-		$this -> load -> view('chart_v', $data);
-		//$data[$table] = $table_data;
-
-		//echo json_encode($data);
-	}
-
-	public function Backlog($month = "04", $year = 2012) {
-		$monthArray = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12", "may_12");
-
-		//Array List of all Tables
-		//$table_list = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
-		//Loop through Tables and generate Charts foreach
-		$table = 'backlog_and_tat_compliance';
-
-		$table_data[] = $this -> generate($month, $year, $table, 'Backlog');
-		$table_data[] = $this -> generate($month, $year, $table, 'TAT Compliance');
-
-		$results = json_encode($table_data);
-
-		$resultArraySize = 10;
-		$data['resultArraySize'] = $resultArraySize;
-		$data['container'] = 'chart_expiry';
-		$data['chartType'] = 'line';
-		$data['title'] = 'Chart';
-		$data['chartTitle'] = $table;
-		$data['categories'] = json_encode($monthArray);
-		$data['yAxis'] = 'Drugs';
-		$data['resultArray'] = $results;
-		$this -> load -> view('chart_v', $data);
-		//$data[$table] = $table_data;
-
-		//echo json_encode($data);
-	}
-
-	public function CountryHCT($month = "04", $year = 2012) {
-		$monthArray = array("may_11", "june_11", "july_11", "aug_11", "sept_11", "oct_11", "nov_11", "dec_11", "jan_12", "feb_12", "mar_12", "apr_12", "may_12");
-
-		//Array List of all Tables
-		//$table_list = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
-		//Loop through Tables and generate Charts foreach
-		$table = 'country_hct_by_weighted_volume';
-
-		$table_data[] = $this -> generate($month, $year, $table, 'KEN');
-		$table_data[] = $this -> generate($month, $year, $table, 'UGA');
-		$table_data[] = $this -> generate($month, $year, $table, 'TZA');
-		$table_data[] = $this -> generate($month, $year, $table, 'ZAM');
-		$table_data[] = $this -> generate($month, $year, $table, 'BOT');
-		$table_data[] = $this -> generate($month, $year, $table, 'ZAR');
-
-		$results = json_encode($table_data);
-
-		$resultArraySize = 10;
-		$data['resultArraySize'] = $resultArraySize;
-		$data['container'] = 'chart_expiry';
-		$data['chartType'] = 'line';
-		$data['title'] = 'Chart';
-		$data['chartTitle'] = $table;
-		$data['categories'] = json_encode($monthArray);
-		$data['yAxis'] = 'Drugs';
-		$data['resultArray'] = $results;
-		$this -> load -> view('chart_v', $data);
-		//$data[$table] = $table_data;
-
-		//echo json_encode($data);
 	}
 
 }
