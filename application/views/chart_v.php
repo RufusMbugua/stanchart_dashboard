@@ -38,7 +38,8 @@ if($resultArraySize>25){
 		'#c42525',
 		'#a6c96a'
 		],
-		chart: {
+		chart: {            
+                zoomType: 'x',            
 			height:<?php echo $chartSize;?>,
 		type: '<?php echo $chartType ?>'
 		},
