@@ -70,7 +70,7 @@ if($resultArraySize>25){
 		},
 		legend: {
 		layout: 'horizontal',
-		align: 'left',
+		align: 'right',
 		verticalAlign: 'top',
 		floating: true,
 		borderWidth: 1,
