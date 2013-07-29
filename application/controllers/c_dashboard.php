@@ -77,7 +77,5 @@ class C_Dashboard extends CI_Controller {
 		$this -> load -> view($openview, $data);
 	}
 	
-	
-
 }
 ?>
