@@ -31,5 +31,5 @@ AddType text/cache-manifest .appcache
     # Submitted by: ElliotHaughin
 
     ErrorDocument 404 /index.php
-    
+
 </IfModule> 

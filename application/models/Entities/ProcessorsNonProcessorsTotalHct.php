@@ -1,121 +1,116 @@
 <?php
-
 namespace models\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * models\Entities\Processors&NonProcessorsTotalHct
- *
- * @ORM\Table(name="processors_&_non_processors_total_hct")
- * @ORM\Entity
+ * @Entity
+ * @Table(name="processors_&_non_processors_total_hct")
  */
-class Processors&NonProcessorsTotalHct
+class ProcessorsNonProcessorsTotalHct
 {
     /**
      * @var integer $recordid
      *
-     * @ORM\Column(name="recordID", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Column(name="recordID", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $recordid;
 
     /**
      * @var string $parameter
      *
-     * @ORM\Column(name="parameter", type="string", length=45, nullable=false)
+     * @Column(name="parameter", type="string", length=45, nullable=false)
      */
     private $parameter;
 
     /**
      * @var float $may11
      *
-     * @ORM\Column(name="may_11", type="float", nullable=false)
+     * @Column(name="may_11", type="float", nullable=false)
      */
     private $may11;
 
     /**
      * @var float $june11
      *
-     * @ORM\Column(name="june_11", type="float", nullable=false)
+     * @Column(name="june_11", type="float", nullable=false)
      */
     private $june11;
 
     /**
      * @var float $july11
      *
-     * @ORM\Column(name="july_11", type="float", nullable=false)
+     * @Column(name="july_11", type="float", nullable=false)
      */
     private $july11;
 
     /**
      * @var float $aug11
      *
-     * @ORM\Column(name="aug_11", type="float", nullable=false)
+     * @Column(name="aug_11", type="float", nullable=false)
      */
     private $aug11;
 
     /**
      * @var float $sept11
      *
-     * @ORM\Column(name="sept_11", type="float", nullable=false)
+     * @Column(name="sept_11", type="float", nullable=false)
      */
     private $sept11;
 
     /**
      * @var float $oct11
      *
-     * @ORM\Column(name="oct_11", type="float", nullable=false)
+     * @Column(name="oct_11", type="float", nullable=false)
      */
     private $oct11;
 
     /**
      * @var float $nov11
      *
-     * @ORM\Column(name="nov_11", type="float", nullable=false)
+     * @Column(name="nov_11", type="float", nullable=false)
      */
     private $nov11;
 
     /**
      * @var float $dec11
      *
-     * @ORM\Column(name="dec_11", type="float", nullable=false)
+     * @Column(name="dec_11", type="float", nullable=false)
      */
     private $dec11;
 
     /**
      * @var float $jan12
      *
-     * @ORM\Column(name="jan_12", type="float", nullable=false)
+     * @Column(name="jan_12", type="float", nullable=false)
      */
     private $jan12;
 
     /**
      * @var float $feb12
      *
-     * @ORM\Column(name="feb_12", type="float", nullable=false)
+     * @Column(name="feb_12", type="float", nullable=false)
      */
     private $feb12;
 
     /**
      * @var float $mar12
      *
-     * @ORM\Column(name="mar_12", type="float", nullable=false)
+     * @Column(name="mar_12", type="float", nullable=false)
      */
     private $mar12;
 
     /**
      * @var float $apr12
      *
-     * @ORM\Column(name="apr_12", type="float", nullable=false)
+     * @Column(name="apr_12", type="float", nullable=false)
      */
     private $apr12;
 
     /**
      * @var float $may12
      *
-     * @ORM\Column(name="may_12", type="float", nullable=false)
+     * @Column(name="may_12", type="float", nullable=false)
      */
     private $may12;
 
@@ -134,7 +129,7 @@ class Processors&NonProcessorsTotalHct
      * Set parameter
      *
      * @param string $parameter
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setParameter($parameter)
     {
@@ -156,7 +151,7 @@ class Processors&NonProcessorsTotalHct
      * Set may11
      *
      * @param float $may11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setMay11($may11)
     {
@@ -178,7 +173,7 @@ class Processors&NonProcessorsTotalHct
      * Set june11
      *
      * @param float $june11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setJune11($june11)
     {
@@ -200,7 +195,7 @@ class Processors&NonProcessorsTotalHct
      * Set july11
      *
      * @param float $july11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setJuly11($july11)
     {
@@ -222,7 +217,7 @@ class Processors&NonProcessorsTotalHct
      * Set aug11
      *
      * @param float $aug11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setAug11($aug11)
     {
@@ -244,7 +239,7 @@ class Processors&NonProcessorsTotalHct
      * Set sept11
      *
      * @param float $sept11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setSept11($sept11)
     {
@@ -266,7 +261,7 @@ class Processors&NonProcessorsTotalHct
      * Set oct11
      *
      * @param float $oct11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setOct11($oct11)
     {
@@ -288,7 +283,7 @@ class Processors&NonProcessorsTotalHct
      * Set nov11
      *
      * @param float $nov11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setNov11($nov11)
     {
@@ -310,7 +305,7 @@ class Processors&NonProcessorsTotalHct
      * Set dec11
      *
      * @param float $dec11
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setDec11($dec11)
     {
@@ -332,7 +327,7 @@ class Processors&NonProcessorsTotalHct
      * Set jan12
      *
      * @param float $jan12
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setJan12($jan12)
     {
@@ -354,7 +349,7 @@ class Processors&NonProcessorsTotalHct
      * Set feb12
      *
      * @param float $feb12
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setFeb12($feb12)
     {
@@ -376,7 +371,7 @@ class Processors&NonProcessorsTotalHct
      * Set mar12
      *
      * @param float $mar12
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setMar12($mar12)
     {
@@ -398,7 +393,7 @@ class Processors&NonProcessorsTotalHct
      * Set apr12
      *
      * @param float $apr12
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setApr12($apr12)
     {
@@ -420,7 +415,7 @@ class Processors&NonProcessorsTotalHct
      * Set may12
      *
      * @param float $may12
-     * @return Processors&NonProcessorsTotalHct
+     * @return ProcessorsNonProcessorsTotalHct
      */
     public function setMay12($may12)
     {

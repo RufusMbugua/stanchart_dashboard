@@ -7,6 +7,7 @@ class C_Dashboard extends CI_Controller {
 		$data = array();
 	}
 
+
 	public function index() {
 		$this -> getChart();
 	}
@@ -31,8 +32,9 @@ class C_Dashboard extends CI_Controller {
 		return $columns;
 	}
 
-	public function getChart($table = "24_hour_query_resolution") {
+	public function getChart($table = "24_hour_query_resolution",$chartType="line") {
 		$table = str_replace("%26", "&", $table);
+		$openview="";
 		$columns = $this -> getColumns($table);
 		$sql = "select * from `$table`";
 		$query = $this -> db -> query($sql);
@@ -51,23 +53,41 @@ class C_Dashboard extends CI_Controller {
 			$total_series[] = $series;
 			unset($table_data);
 		}
+		if ($chartType=="line"|| $chartType=="column" ||$chartType=="bar"){
+			$openview='chart_v';
+		}else if($chartType=="stacked_column"){
+			$openview='chart_stacked_v';
+			$chartType="column";
+		}else if($chartType=="stacked_bar"){
+			$openview='chart_stacked_v';
+			$chartType="bar";
+		}
 		$results = json_encode($total_series);
 		$resultArraySize = 10;
 		$data['resultArraySize'] = $resultArraySize;
 		$data['container'] = 'chart_expiry';
-		$data['chartType'] = 'line';
+		$data['chartType'] = $chartType;
 		$data['title'] = 'Stanchart Dashboard';
 		$data['chartTitle'] = $table;
 		$data['categories'] = json_encode($columns);
 		$data['yAxis'] = 'No. of Queries';
 		$data['resultArray'] = $results;
+		$data['chartTypelist'] = array("line","column","bar","stacked_column","stacked_bar");
 		$data['table_list'] = array("24_hour_query_resolution", "absolute_volume_or_processing_headcount", "activity_volume_by_country", "backlog_and_tat_compliance", "country_hct_by_weighted_volume", "cur_&_productivity_trend", "customer_complaints_vs_accuracy", "employed_vs_unemployed_worker", "interday_volumes_flow", "mandatory_elearning_completion_rate", "overtime_hours_vs_average_working_hour", "pass1_errors_vs_maker_accuracy", "pass2_errors_vs_checker_accuracy", "processors_&_non_processors_total_hct", "rejects_by_country_percentage", "rejects_or_defectives", "staff_turnover", "standard_&_average_working_days", "total_overtime", "volumes", "volumes_vs_weighted_volumes", "weighted_activity_volume_by_country", "weighted_volume_per_processing_hct");
-		$data['contentView']='chart_v';
+
+		$data['contentView']=$openview;
 		$this->loadPage($data);
 	}
 
 public function loadPage($data){
 	$this->load->view('template',$data);
 }
+/*=======
+		$this -> load -> view($openview, $data);
+	}
+	
+>>>>>>> 669b5e0e7531231ec0ea76a6981b15f5f290fb40
+ * *
+ */
 }
 ?>
