@@ -451,12 +451,7 @@ h6 small,
   color: #999999;
 }
 
-h1,
-h2,
-h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
+
 
 h4,
 h5,
@@ -473,11 +468,6 @@ h1,
 h2,
 .h2 {
   font-size: 32px;
-}
-
-h3,
-.h3 {
-  font-size: 24px;
 }
 
 h4,
@@ -1543,7 +1533,6 @@ select.input-small {
 
 .btn {
   display: inline-block;
-  padding: 8px 12px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 500;
@@ -1588,8 +1577,6 @@ fieldset[disabled] .btn {
 
 .btn-default {
   color: #ffffff;
-  background-color: #474949;
-  border-color: #474949;
 }
 
 .btn-default:hover,
@@ -2237,7 +2224,7 @@ a.list-group-item:focus {
   background-color: #b0d2a0;
 }
 
-a.list-group-item.active {
+a.list-group-item.active , h3.chart-title{
   z-index: 2;
   color: #ffffff;
 background-color: #2f9620;

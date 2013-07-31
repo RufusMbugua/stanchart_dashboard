@@ -42,15 +42,10 @@ if($resultArraySize>25){
 			height:<?php echo $chartSize;?>,
 		type: '<?php echo $chartType ?>'
 		},
-		title: {
-		text: '<?php echo $chartTitle; ?>'
-		},
 		xAxis:
 		{
 		categories:  <?php echo $categories; ?>,
-	title: {
-	text: null
-	}
+	
 	},
 	yAxis: {
 	min: 0,
@@ -73,10 +68,10 @@ if($resultArraySize>25){
 		}
 		},
 		legend: {
-		layout: 'horizontal',
-		align: 'left',
-		verticalAlign: 'top',
-		floating: true,
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle',
+		floating: false,
 		borderWidth: 1,
 		backgroundColor: '#FFFFFF',
 		shadow: true
@@ -90,33 +85,8 @@ if($resultArraySize>25){
 </script>
 
 <div class="graph">
-	Table List
-	<select id="table_name">
-		<?php
-		 foreach($table_list as $table){
-		 	echo "<option value='$table'>$table</option>";
-		 }
-		?>
-	</select>
-	<select id="chartType">
-		<?php
-		 foreach($chartTypelist as $type){
-		 	echo "<option value='$type'>$type</option>";
-		 }
-		?>
-	</select>
-	<input type="button" id="go" value="Go" />
+	
 	<div id="<?php echo $container;?>"  style="width:98%"  '>
 </div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#table_name").val("<?php echo $chartTitle; ?>");
-		$("#chartType").val("<?php echo $chartType; ?>");
-		$("#go").click(function(){
-			var table_name=$("#table_name").val();
-			var chartType=$("#chartType").val();
-			window.location="<?php echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(table_name)+"/"+encodeURIComponent(chartType);
-		});
-	});
-</script>
+
