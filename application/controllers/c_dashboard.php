@@ -62,13 +62,17 @@ class C_Dashboard extends CI_Controller {
 			$openview = 'chart_stacked_v';
 			$chartType = "bar";
 		}
+		
+		foreach($columns as $column){
+			$categories[]=ucfirst(trim(str_replace('_',' ' ,$column)));
+			}
 		$results = json_encode($total_series);
 		$resultArraySize = 10;
 		$data['resultArraySize'] = $resultArraySize;
 		$data['container'] = 'chart_expiry';
 		$data['chartType'] = $chartType;
 		$data['chartTitle'] = trim(str_replace('_',' ' ,$table));
-		$data['categories'] = json_encode($columns);
+		$data['categories'] = json_encode($categories);
 		$data['yAxis'] = 'No. of Queries';
 		$data['resultArray'] = $results;
 		$data['chartTypelist'] = array("line", "column", "bar", "stacked_column", "stacked_bar");

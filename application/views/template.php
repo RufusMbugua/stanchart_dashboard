@@ -51,7 +51,7 @@
 			$("a.list-group-item").removeClass("active");
 			$(this).addClass("active");
 			selected=$(this).attr('value');
-			$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/stacked_bar");
+			$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/stacked_column");
 			
 		});
 	

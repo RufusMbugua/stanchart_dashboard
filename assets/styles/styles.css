@@ -13,63 +13,72 @@ body {
 	font-family: Corbert Regular;
 	background: white;
 }
-.content{
-	padding:1%;
+.content {
+	padding: 1%;
 }
-#user{
-	float:right;
+#user {
+	float: right;
 }
-#side_menu{
-	display:inline-block;
-	margin-top:0;
-	width:20%;
-	height:65%;
+#side_menu {
+	display: inline-block;
+	margin-top: 0;
+	width: 20%;
+	height: 65%;
 }
-.right_content{
-	display:inline-block;
-	width:70%;
-	float:right;
+.right_content {
+	display: inline-block;
+	width: 70%;
+	float: right;
 	border-radius: 4px;
-	border:1px solid #dddddd;
+	border: 1px solid #dddddd;
 }
-.tile{
-	display:inline-block;
-	height:30%;
-	margin:0 1% 1% 0;
+.tile {
+	display: inline-block;
+	height: 30%;
+	margin: 0 1% 1% 0;
 }
 
-.small{
-	width:46%;
+.small {
+	width: 46%;
 }
-.large{
-	width:95.5%;
+.large {
+	width: 95.5%;
 }
-.chartOption{
-	display:inline-block;
-	width:25%;
+.chartOption {
+	display: inline-block;
+	width: 25%;
 }
-.chartOption a{
-	cursor:pointer;
+.chartOption a {
+	cursor: pointer;
 }
-.chart-title{
-	border-top-left-radius:4px;
-	border-top-right-radius:4px;
-	padding:5px 30px 5px 15px
+.chart-title {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 5px 30px 5px 15px
 }
-.chart-type{
-	margin-left:55%;
+.chart-type {
+	margin-left: 55%;
 }
-h3{
-	font-size:14px;
-   text-transform:capitalize;
-	margin:0;
-	margin-bottom:5px;
+h3 {
+	font-size: 14px;
+	text-transform: capitalize;
+	margin: 0;
+	margin-bottom: 5px;
 }
-h3 button{
-	padding:0;
-	background:#b0d2a0;
+h3 button {
+	padding: 0;
+	background: #b0d2a0;
 }
 /*
  * Buttons
  */
 
+/**
+ *Box Shadows 
+ */
+.chartOption,.right_content{
+	box-shadow: 0 1px 5px 2px #d9d9d9;
+	-webkit-box-shadow: 0 1px 5px 2px #d9d9d9;
+	-moz-box-shadow: 0 1px 5px 2px #d9d9d9;
+	-o-box-shadow: 0 1px 5px 2px #d9d9d9;
+	}
