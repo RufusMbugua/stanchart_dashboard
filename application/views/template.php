@@ -46,12 +46,12 @@
 		var link;
 		var selected;
 		selected=$('.active').attr('value');
-		$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/line");
+		$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/bar");
 		$("a.list-group-item").click(function(){
 			$("a.list-group-item").removeClass("active");
 			$(this).addClass("active");
 			selected=$(this).attr('value');
-			$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/stacked_column");
+			$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/column");
 			
 		});
 	

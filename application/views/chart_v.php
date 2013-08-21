@@ -42,6 +42,9 @@ if($resultArraySize>25){
 			height:<?php echo $chartSize;?>,
 		type: '<?php echo $chartType ?>'
 		},
+		title: {
+		text: '<?php echo $chartTitle; ?>'
+		},
 		xAxis:
 		{
 		categories:  <?php echo $categories; ?>,

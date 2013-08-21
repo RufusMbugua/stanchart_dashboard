@@ -33,6 +33,7 @@ class C_Dashboard extends CI_Controller {
 	}
 
 	public function getChart($table = "24_hour_query_resolution", $chartType = "line") {
+		$chartTypeArray =array('column','column','line','line');
 		$table = str_replace("%26", "&", $table);
 		$openview = "";
 		$columns = $this -> getColumns($table);
@@ -41,6 +42,7 @@ class C_Dashboard extends CI_Controller {
 		$results = $query -> result_array();
 		$series = array();
 		$total_series = array();
+		$chartCount = 0;
 		foreach ($results as $key => $result) {
 			foreach ($result as $column => $value) {
 				foreach ($columns as $month) {
@@ -49,9 +51,17 @@ class C_Dashboard extends CI_Controller {
 					}
 				}
 			}
-			$series = array('name' => $result['parameter'], 'data' => $table_data);
+			if($table=='overtime_hours_vs_average_working_hour'){
+			$series = array('type'=>$chartTypeArray[$chartCount],'name' => $result['parameter'], 'data' => $table_data);
+				$chartCount++;
+			}
+else{
+	$series = array('name' => $result['parameter'], 'data' => $table_data);
+}
+			
 			$total_series[] = $series;
 			unset($table_data);
+			
 		}
 		if ($chartType == "line" || $chartType == "column" || $chartType == "bar") {
 			$openview = 'chart_v';
@@ -67,6 +77,7 @@ class C_Dashboard extends CI_Controller {
 			$categories[]=ucfirst(trim(str_replace('_',' ' ,$column)));
 			}
 		$results = json_encode($total_series);
+		
 		$resultArraySize = 10;
 		$data['resultArraySize'] = $resultArraySize;
 		$data['container'] = 'chart_expiry';

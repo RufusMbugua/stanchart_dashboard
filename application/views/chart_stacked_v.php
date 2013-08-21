@@ -69,10 +69,10 @@ if($resultArraySize>25){
                }
 		},
 		legend: {
-		layout: 'horizontal',
+		layout: 'vertical',
 		align: 'right',
 		verticalAlign: 'top',
-		floating: true,
+		floating: false,
 		borderWidth: 1,
 		backgroundColor: '#FFFFFF',
 		shadow: true
