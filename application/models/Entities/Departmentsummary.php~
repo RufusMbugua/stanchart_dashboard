@@ -1,0 +1,98 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Departmentsummary
+ *
+ * @ORM\Table(name="departmentsummary")
+ * @ORM\Entity
+ */
+class Departmentsummary
+{
+    /**
+     * @var integer $departmentsummaryid
+     *
+     * @ORM\Column(name="departmentSummaryID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $departmentsummaryid;
+
+    /**
+     * @var models\Entities\Department
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Department")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departmentID", referencedColumnName="departmentID")
+     * })
+     */
+    private $departmentid;
+
+    /**
+     * @var models\Entities\Branchsummary
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Branchsummary")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="branchSummaryID", referencedColumnName="branchSummaryID")
+     * })
+     */
+    private $branchsummaryid;
+
+
+    /**
+     * Get departmentsummaryid
+     *
+     * @return integer 
+     */
+    public function getDepartmentsummaryid()
+    {
+        return $this->departmentsummaryid;
+    }
+
+    /**
+     * Set departmentid
+     *
+     * @param models\Entities\Department $departmentid
+     * @return Departmentsummary
+     */
+    public function setDepartmentid(\models\Entities\Department $departmentid = null)
+    {
+        $this->departmentid = $departmentid;
+        return $this;
+    }
+
+    /**
+     * Get departmentid
+     *
+     * @return models\Entities\Department 
+     */
+    public function getDepartmentid()
+    {
+        return $this->departmentid;
+    }
+
+    /**
+     * Set branchsummaryid
+     *
+     * @param models\Entities\Branchsummary $branchsummaryid
+     * @return Departmentsummary
+     */
+    public function setBranchsummaryid(\models\Entities\Branchsummary $branchsummaryid = null)
+    {
+        $this->branchsummaryid = $branchsummaryid;
+        return $this;
+    }
+
+    /**
+     * Get branchsummaryid
+     *
+     * @return models\Entities\Branchsummary 
+     */
+    public function getBranchsummaryid()
+    {
+        return $this->branchsummaryid;
+    }
+}

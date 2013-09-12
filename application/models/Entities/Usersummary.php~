@@ -1,0 +1,98 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Usersummary
+ *
+ * @ORM\Table(name="usersummary")
+ * @ORM\Entity
+ */
+class Usersummary
+{
+    /**
+     * @var integer $usersummaryid
+     *
+     * @ORM\Column(name="userSummaryID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $usersummaryid;
+
+    /**
+     * @var models\Entities\Users
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userID", referencedColumnName="userID")
+     * })
+     */
+    private $userid;
+
+    /**
+     * @var models\Entities\Branchsummary
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Branchsummary")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="branchSummaryID", referencedColumnName="branchSummaryID")
+     * })
+     */
+    private $branchsummaryid;
+
+
+    /**
+     * Get usersummaryid
+     *
+     * @return integer 
+     */
+    public function getUsersummaryid()
+    {
+        return $this->usersummaryid;
+    }
+
+    /**
+     * Set userid
+     *
+     * @param models\Entities\Users $userid
+     * @return Usersummary
+     */
+    public function setUserid(\models\Entities\Users $userid = null)
+    {
+        $this->userid = $userid;
+        return $this;
+    }
+
+    /**
+     * Get userid
+     *
+     * @return models\Entities\Users 
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
+
+    /**
+     * Set branchsummaryid
+     *
+     * @param models\Entities\Branchsummary $branchsummaryid
+     * @return Usersummary
+     */
+    public function setBranchsummaryid(\models\Entities\Branchsummary $branchsummaryid = null)
+    {
+        $this->branchsummaryid = $branchsummaryid;
+        return $this;
+    }
+
+    /**
+     * Get branchsummaryid
+     *
+     * @return models\Entities\Branchsummary 
+     */
+    public function getBranchsummaryid()
+    {
+        return $this->branchsummaryid;
+    }
+}

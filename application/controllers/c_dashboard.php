@@ -31,13 +31,24 @@ class C_Dashboard extends CI_Controller {
 		}
 		return $columns;
 	}
-
-	public function getChart($table = "24_hour_query_resolution", $chartType = "line") {
-		$chartTypeArray =array('column','column','line','line');
+	public function loadBranch($table,$branches = array(1,2)) {
+		$data['compare']=1;
+		foreach ($branches as $branch) {
+           $this->getChart($table,"line",$branch,$data);
+		}
+	}
+	public function getChart($table = "24_hour_query_resolution", $chartType = "line",$branch=1,$data = array()) {
+		$chartTypeArray = array('column', 'column', 'line', 'line');
 		$table = str_replace("%26", "&", $table);
 		$openview = "";
-		$columns = $this -> getColumns($table);
-		$sql = "select * from `$table`";
+		$columns = $this -> getColumns($table);	
+		if($table=='24_hour_query_resolution'){
+			$sql = "select * from `$table` WHERE branch=$branch";
+		}	
+		else{
+			$sql = "select * from `$table`";
+		}
+		
 		$query = $this -> db -> query($sql);
 		$results = $query -> result_array();
 		$series = array();
@@ -46,22 +57,22 @@ class C_Dashboard extends CI_Controller {
 		foreach ($results as $key => $result) {
 			foreach ($result as $column => $value) {
 				foreach ($columns as $month) {
-					if ($column == $month) {
-						$table_data[] = (double)$value;
+					if (($column == $month)&& ($column !="branch")) {
+							$table_data[] = (double)$value;
+						
 					}
 				}
 			}
-			if($table=='overtime_hours_vs_average_working_hour'){
-			$series = array('type'=>$chartTypeArray[$chartCount],'name' => $result['parameter'], 'data' => $table_data);
+			if ($table == 'overtime_hours_vs_average_working_hour') {
+				$series = array('type' => $chartTypeArray[$chartCount], 'name' => $result['parameter'], 'data' => $table_data);
 				$chartCount++;
+			} else {
+				$series = array('name' => $result['parameter'], 'data' => $table_data);
 			}
-else{
-	$series = array('name' => $result['parameter'], 'data' => $table_data);
-}
-			
+
 			$total_series[] = $series;
 			unset($table_data);
-			
+
 		}
 		if ($chartType == "line" || $chartType == "column" || $chartType == "bar") {
 			$openview = 'chart_v';
@@ -72,17 +83,18 @@ else{
 			$openview = 'chart_stacked_v';
 			$chartType = "bar";
 		}
-		
-		foreach($columns as $column){
-			$categories[]=ucfirst(trim(str_replace('_',' ' ,$column)));
-			}
+
+		foreach ($columns as $column) {
+			$categories[] = ucfirst(trim(str_replace('_', ' ', $column)));
+		}
 		$results = json_encode($total_series);
-		
+
 		$resultArraySize = 10;
 		$data['resultArraySize'] = $resultArraySize;
-		$data['container'] = 'chart_expiry';
+		$data['container'] = 'chart_expiry'.$branch;
+		//$data['compare'] = 1;
 		$data['chartType'] = $chartType;
-		$data['chartTitle'] = trim(str_replace('_',' ' ,$table));
+		$data['chartTitle'] = trim(str_replace('_', ' ', $table).' Branch'.$branch);
 		$data['categories'] = json_encode($categories);
 		$data['yAxis'] = 'No. of Queries';
 		$data['resultArray'] = $results;

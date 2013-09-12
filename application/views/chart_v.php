@@ -22,6 +22,14 @@ if($resultArraySize>25){
 
 ?>
 
+
+
+<div class="graph">
+	
+	<div id="<?php echo $container;?>"  style="width:98%"  '>
+</div>
+</div>
+
 <script>
 		$(function () {
 	$('<?php echo "#" . $container; ?>').highcharts({
@@ -86,10 +94,3 @@ if($resultArraySize>25){
 		});
 		});
 </script>
-
-<div class="graph">
-	
-	<div id="<?php echo $container;?>"  style="width:98%"  '>
-</div>
-</div>
-

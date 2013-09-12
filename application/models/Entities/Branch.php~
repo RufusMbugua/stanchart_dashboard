@@ -1,0 +1,63 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Branch
+ *
+ * @ORM\Table(name="branch")
+ * @ORM\Entity
+ */
+class Branch
+{
+    /**
+     * @var integer $branchid
+     *
+     * @ORM\Column(name="branchID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $branchid;
+
+    /**
+     * @var string $branchname
+     *
+     * @ORM\Column(name="branchName", type="string", length=45, nullable=true)
+     */
+    private $branchname;
+
+
+    /**
+     * Get branchid
+     *
+     * @return integer 
+     */
+    public function getBranchid()
+    {
+        return $this->branchid;
+    }
+
+    /**
+     * Set branchname
+     *
+     * @param string $branchname
+     * @return Branch
+     */
+    public function setBranchname($branchname)
+    {
+        $this->branchname = $branchname;
+        return $this;
+    }
+
+    /**
+     * Get branchname
+     *
+     * @return string 
+     */
+    public function getBranchname()
+    {
+        return $this->branchname;
+    }
+}

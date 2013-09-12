@@ -1,0 +1,98 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Branchsummary
+ *
+ * @ORM\Table(name="branchsummary")
+ * @ORM\Entity
+ */
+class Branchsummary
+{
+    /**
+     * @var integer $branchsummaryid
+     *
+     * @ORM\Column(name="branchSummaryID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $branchsummaryid;
+
+    /**
+     * @var models\Entities\Branch
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Branch")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="branchID", referencedColumnName="branchID")
+     * })
+     */
+    private $branchid;
+
+    /**
+     * @var models\Entities\Country
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Country")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="countryID", referencedColumnName="countryID")
+     * })
+     */
+    private $countryid;
+
+
+    /**
+     * Get branchsummaryid
+     *
+     * @return integer 
+     */
+    public function getBranchsummaryid()
+    {
+        return $this->branchsummaryid;
+    }
+
+    /**
+     * Set branchid
+     *
+     * @param models\Entities\Branch $branchid
+     * @return Branchsummary
+     */
+    public function setBranchid(\models\Entities\Branch $branchid = null)
+    {
+        $this->branchid = $branchid;
+        return $this;
+    }
+
+    /**
+     * Get branchid
+     *
+     * @return models\Entities\Branch 
+     */
+    public function getBranchid()
+    {
+        return $this->branchid;
+    }
+
+    /**
+     * Set countryid
+     *
+     * @param models\Entities\Country $countryid
+     * @return Branchsummary
+     */
+    public function setCountryid(\models\Entities\Country $countryid = null)
+    {
+        $this->countryid = $countryid;
+        return $this;
+    }
+
+    /**
+     * Get countryid
+     *
+     * @return models\Entities\Country 
+     */
+    public function getCountryid()
+    {
+        return $this->countryid;
+    }
+}

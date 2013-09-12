@@ -1,0 +1,63 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Year
+ *
+ * @ORM\Table(name="year")
+ * @ORM\Entity
+ */
+class Year
+{
+    /**
+     * @var integer $yearid
+     *
+     * @ORM\Column(name="yearID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $yearid;
+
+    /**
+     * @var string $yearname
+     *
+     * @ORM\Column(name="yearName", type="string", length=45, nullable=true)
+     */
+    private $yearname;
+
+
+    /**
+     * Get yearid
+     *
+     * @return integer 
+     */
+    public function getYearid()
+    {
+        return $this->yearid;
+    }
+
+    /**
+     * Set yearname
+     *
+     * @param string $yearname
+     * @return Year
+     */
+    public function setYearname($yearname)
+    {
+        $this->yearname = $yearname;
+        return $this;
+    }
+
+    /**
+     * Get yearname
+     *
+     * @return string 
+     */
+    public function getYearname()
+    {
+        return $this->yearname;
+    }
+}

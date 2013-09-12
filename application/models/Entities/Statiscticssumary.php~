@@ -1,0 +1,220 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Statiscticssumary
+ *
+ * @ORM\Table(name="statiscticssumary")
+ * @ORM\Entity
+ */
+class Statiscticssumary
+{
+    /**
+     * @var integer $statiscticssumaryid
+     *
+     * @ORM\Column(name="statiscticsSumaryID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $statiscticssumaryid;
+
+    /**
+     * @var float $statisticsvalue
+     *
+     * @ORM\Column(name="statisticsValue", type="float", nullable=true)
+     */
+    private $statisticsvalue;
+
+    /**
+     * @var float $statisticsunit
+     *
+     * @ORM\Column(name="statisticsUnit", type="float", nullable=true)
+     */
+    private $statisticsunit;
+
+    /**
+     * @var models\Entities\Statistics
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Statistics")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="statisticsID", referencedColumnName="statisticID")
+     * })
+     */
+    private $statisticsid;
+
+    /**
+     * @var models\Entities\Parameter
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Parameter")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parameterID", referencedColumnName="parameterID")
+     * })
+     */
+    private $parameterid;
+
+    /**
+     * @var models\Entities\Departmentsummary
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Departmentsummary")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departmentSummaryID", referencedColumnName="departmentSummaryID")
+     * })
+     */
+    private $departmentsummaryid;
+
+    /**
+     * @var models\Entities\Durationsummary
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Durationsummary")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="durationSummaryID", referencedColumnName="durationSummaryID")
+     * })
+     */
+    private $durationsummaryid;
+
+
+    /**
+     * Get statiscticssumaryid
+     *
+     * @return integer 
+     */
+    public function getStatiscticssumaryid()
+    {
+        return $this->statiscticssumaryid;
+    }
+
+    /**
+     * Set statisticsvalue
+     *
+     * @param float $statisticsvalue
+     * @return Statiscticssumary
+     */
+    public function setStatisticsvalue($statisticsvalue)
+    {
+        $this->statisticsvalue = $statisticsvalue;
+        return $this;
+    }
+
+    /**
+     * Get statisticsvalue
+     *
+     * @return float 
+     */
+    public function getStatisticsvalue()
+    {
+        return $this->statisticsvalue;
+    }
+
+    /**
+     * Set statisticsunit
+     *
+     * @param float $statisticsunit
+     * @return Statiscticssumary
+     */
+    public function setStatisticsunit($statisticsunit)
+    {
+        $this->statisticsunit = $statisticsunit;
+        return $this;
+    }
+
+    /**
+     * Get statisticsunit
+     *
+     * @return float 
+     */
+    public function getStatisticsunit()
+    {
+        return $this->statisticsunit;
+    }
+
+    /**
+     * Set statisticsid
+     *
+     * @param models\Entities\Statistics $statisticsid
+     * @return Statiscticssumary
+     */
+    public function setStatisticsid(\models\Entities\Statistics $statisticsid = null)
+    {
+        $this->statisticsid = $statisticsid;
+        return $this;
+    }
+
+    /**
+     * Get statisticsid
+     *
+     * @return models\Entities\Statistics 
+     */
+    public function getStatisticsid()
+    {
+        return $this->statisticsid;
+    }
+
+    /**
+     * Set parameterid
+     *
+     * @param models\Entities\Parameter $parameterid
+     * @return Statiscticssumary
+     */
+    public function setParameterid(\models\Entities\Parameter $parameterid = null)
+    {
+        $this->parameterid = $parameterid;
+        return $this;
+    }
+
+    /**
+     * Get parameterid
+     *
+     * @return models\Entities\Parameter 
+     */
+    public function getParameterid()
+    {
+        return $this->parameterid;
+    }
+
+    /**
+     * Set departmentsummaryid
+     *
+     * @param models\Entities\Departmentsummary $departmentsummaryid
+     * @return Statiscticssumary
+     */
+    public function setDepartmentsummaryid(\models\Entities\Departmentsummary $departmentsummaryid = null)
+    {
+        $this->departmentsummaryid = $departmentsummaryid;
+        return $this;
+    }
+
+    /**
+     * Get departmentsummaryid
+     *
+     * @return models\Entities\Departmentsummary 
+     */
+    public function getDepartmentsummaryid()
+    {
+        return $this->departmentsummaryid;
+    }
+
+    /**
+     * Set durationsummaryid
+     *
+     * @param models\Entities\Durationsummary $durationsummaryid
+     * @return Statiscticssumary
+     */
+    public function setDurationsummaryid(\models\Entities\Durationsummary $durationsummaryid = null)
+    {
+        $this->durationsummaryid = $durationsummaryid;
+        return $this;
+    }
+
+    /**
+     * Get durationsummaryid
+     *
+     * @return models\Entities\Durationsummary 
+     */
+    public function getDurationsummaryid()
+    {
+        return $this->durationsummaryid;
+    }
+}

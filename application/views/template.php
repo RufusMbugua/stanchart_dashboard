@@ -14,6 +14,7 @@
 					<a class="navbar-brand" href="#"><img src='<?php echo base_url();?>assets/images/Stan.png' />Standard Chartered Dashboard</a>
 					<div id="user">
 						
+						<div id="user-text"><i class="icon-user"></i>Welcome Guest</div>
 					</div>
 				</div>
 				
@@ -36,7 +37,25 @@
 		?>
 </div>
 <div class="right_content">
+	<?php
+
+if(isset($compare)){
+
+?>
+<div class="compare top-bottom">
+</div>
+<div class="compare top-bottom">
+</div>
+<?php
+
+}
+else{
+	$this -> load -> view('chartLoader');
+}
+	?>
+	
 			<?php
+			
 			$this -> load -> view('chartLoader');
 			?>
 			</div>
@@ -45,19 +64,43 @@
 	$(document).ready(function(){
 		var link;
 		var selected;
+		var btnVal;
+		var btnClicked;
+		var branches = new Array(1,2);
+		
 		selected=$('.active').attr('value');
+		$('.active').prepend("<i class='icon-bar-chart'>");
 		$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/bar");
+			
+	
+		
 		$("a.list-group-item").click(function(){
 			$("a.list-group-item").removeClass("active");
+			$("a.list-group-item i").remove();
 			$(this).addClass("active");
+			$(this).prepend("<i class='icon-bar-chart'>");
 			selected=$(this).attr('value');
-			$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/column");
+			$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/bar");
 			
 		});
 	
-	$(".btn").click(function(){
-		alert(' ');
-	});
+$(document).on('click', 'button.btn', function(){
+    
+    btnVal = $(this).attr('value');
+    
+    if(btnVal=='compare'){
+    	$('.right_content').load("<?php  echo base_url();?>c_dashboard/loadBranch/"+encodeURIComponent(selected));}
+    else{
+    	$('.right_content').load("<?php  echo base_url();?>c_dashboard/getChart/"+encodeURIComponent(selected)+"/"+btnVal,function(){
+    		
+    	});
+    }
+    
+    	
+	//$('button.btn').delay(1000000).removeClass('active');
+   // $(this).delay(120000).addClass('active');
+});
+	
 	});
 </script>
 	</body>

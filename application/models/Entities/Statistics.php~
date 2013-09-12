@@ -1,0 +1,63 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Statistics
+ *
+ * @ORM\Table(name="statistics")
+ * @ORM\Entity
+ */
+class Statistics
+{
+    /**
+     * @var integer $statisticid
+     *
+     * @ORM\Column(name="statisticID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $statisticid;
+
+    /**
+     * @var string $statisticname
+     *
+     * @ORM\Column(name="statisticName", type="string", length=45, nullable=true)
+     */
+    private $statisticname;
+
+
+    /**
+     * Get statisticid
+     *
+     * @return integer 
+     */
+    public function getStatisticid()
+    {
+        return $this->statisticid;
+    }
+
+    /**
+     * Set statisticname
+     *
+     * @param string $statisticname
+     * @return Statistics
+     */
+    public function setStatisticname($statisticname)
+    {
+        $this->statisticname = $statisticname;
+        return $this;
+    }
+
+    /**
+     * Get statisticname
+     *
+     * @return string 
+     */
+    public function getStatisticname()
+    {
+        return $this->statisticname;
+    }
+}

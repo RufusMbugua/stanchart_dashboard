@@ -1,0 +1,63 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Country
+ *
+ * @ORM\Table(name="country")
+ * @ORM\Entity
+ */
+class Country
+{
+    /**
+     * @var integer $countryid
+     *
+     * @ORM\Column(name="countryID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $countryid;
+
+    /**
+     * @var string $countryname
+     *
+     * @ORM\Column(name="countryName", type="string", length=45, nullable=true)
+     */
+    private $countryname;
+
+
+    /**
+     * Get countryid
+     *
+     * @return integer 
+     */
+    public function getCountryid()
+    {
+        return $this->countryid;
+    }
+
+    /**
+     * Set countryname
+     *
+     * @param string $countryname
+     * @return Country
+     */
+    public function setCountryname($countryname)
+    {
+        $this->countryname = $countryname;
+        return $this;
+    }
+
+    /**
+     * Get countryname
+     *
+     * @return string 
+     */
+    public function getCountryname()
+    {
+        return $this->countryname;
+    }
+}

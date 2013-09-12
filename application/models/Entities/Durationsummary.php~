@@ -1,0 +1,98 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Durationsummary
+ *
+ * @ORM\Table(name="durationsummary")
+ * @ORM\Entity
+ */
+class Durationsummary
+{
+    /**
+     * @var integer $durationsummaryid
+     *
+     * @ORM\Column(name="durationSummaryID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $durationsummaryid;
+
+    /**
+     * @var models\Entities\Year
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Year")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="yearID", referencedColumnName="yearID")
+     * })
+     */
+    private $yearid;
+
+    /**
+     * @var models\Entities\Month
+     *
+     * @ORM\ManyToOne(targetEntity="models\Entities\Month")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="monthID", referencedColumnName="monthID")
+     * })
+     */
+    private $monthid;
+
+
+    /**
+     * Get durationsummaryid
+     *
+     * @return integer 
+     */
+    public function getDurationsummaryid()
+    {
+        return $this->durationsummaryid;
+    }
+
+    /**
+     * Set yearid
+     *
+     * @param models\Entities\Year $yearid
+     * @return Durationsummary
+     */
+    public function setYearid(\models\Entities\Year $yearid = null)
+    {
+        $this->yearid = $yearid;
+        return $this;
+    }
+
+    /**
+     * Get yearid
+     *
+     * @return models\Entities\Year 
+     */
+    public function getYearid()
+    {
+        return $this->yearid;
+    }
+
+    /**
+     * Set monthid
+     *
+     * @param models\Entities\Month $monthid
+     * @return Durationsummary
+     */
+    public function setMonthid(\models\Entities\Month $monthid = null)
+    {
+        $this->monthid = $monthid;
+        return $this;
+    }
+
+    /**
+     * Get monthid
+     *
+     * @return models\Entities\Month 
+     */
+    public function getMonthid()
+    {
+        return $this->monthid;
+    }
+}

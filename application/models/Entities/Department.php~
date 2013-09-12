@@ -1,0 +1,63 @@
+<?php
+
+namespace models\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * models\Entities\Department
+ *
+ * @ORM\Table(name="department")
+ * @ORM\Entity
+ */
+class Department
+{
+    /**
+     * @var integer $departmentid
+     *
+     * @ORM\Column(name="departmentID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $departmentid;
+
+    /**
+     * @var string $departmentname
+     *
+     * @ORM\Column(name="departmentName", type="string", length=45, nullable=true)
+     */
+    private $departmentname;
+
+
+    /**
+     * Get departmentid
+     *
+     * @return integer 
+     */
+    public function getDepartmentid()
+    {
+        return $this->departmentid;
+    }
+
+    /**
+     * Set departmentname
+     *
+     * @param string $departmentname
+     * @return Department
+     */
+    public function setDepartmentname($departmentname)
+    {
+        $this->departmentname = $departmentname;
+        return $this;
+    }
+
+    /**
+     * Get departmentname
+     *
+     * @return string 
+     */
+    public function getDepartmentname()
+    {
+        return $this->departmentname;
+    }
+}
