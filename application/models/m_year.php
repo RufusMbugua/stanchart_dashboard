@@ -14,7 +14,7 @@ class M_Year extends MY_Model {
 	}
 
 	public function getAllYears() {
-		$year = $this -> em -> getRepository('E_Year')->findAll();
+		$year = $this -> em -> getRepository('E_Test')->findAll();
 		//$query->setParameter('fname','%'.$options['keyword'].'%');
 
 		$results = $year -> getYearname();

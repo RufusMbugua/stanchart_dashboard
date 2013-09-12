@@ -67,49 +67,48 @@ class Doctrine {
 		$this -> em = EntityManager::create($connectionOptions, $config);
 
 		//$this -> autoGenerateEntitiesFromDatabase();
+	}
+
+	//auto-generate entities
+	function autoGenerateEntitiesFromDatabase() {
+		// custom datatypes (not mapped for reverse engineering)
+		$this -> em -> getConnection() -> getDatabasePlatform() -> registerDoctrineTypeMapping('set', 'string');
+		$this -> em -> getConnection() -> getDatabasePlatform() -> registerDoctrineTypeMapping('enum', 'string');
+		$this -> em -> getConnection() -> getDatabasePlatform() -> registerDoctrineTypeMapping('blob', 'string');
+
+		// fetch metadata
+		$driver = new \Doctrine\ORM\Mapping\Driver\DatabaseDriver($this -> em -> getConnection() -> getSchemaManager());
+
+		$driver -> setNamespace('models\\Entities\\');
+		//set driver implementation
+		$this -> em -> getConfiguration() -> setMetadataDriverImpl($driver);
+
+		$cmf = new \Doctrine\ORM\Tools\DisconnectedClassMetadataFactory($this -> em);
+		$cmf -> setEntityManager($this -> em);
+		$classes = $driver -> getAllClassNames();
+
+		//get class metadata
+		$metadata = $cmf -> getAllMetadata();
+		/*foreach ($classes as $class) {
+		 //any unsupported table/schema could be handled here to exclude some classes
+		 if (true) {
+		 $metadata[] = $cmf->getMetadataFor($class);
+		 //var_dump($metadata);die;
+		 }
+		 }*/
+		//var_dump($metadata);die;
+		$generator = new \Doctrine\ORM\Tools\EntityGenerator();
+		$generator -> setGenerateAnnotations(true);
+		$generator -> setGenerateStubMethods(true);
+		$generator -> setRegenerateEntityIfExists(false);
+		$generator -> setUpdateEntityIfExists(true);
+		try {
+			//var_dump($classes);die;
+			$generator -> generate($metadata, APPPATH . 'models/Entities');
+			print 'Done!';
+		} catch(exception $ex) {
+			die($ex -> getMessage());
 		}
-		//auto-generate entities
-		function autoGenerateEntitiesFromDatabase() {
-			// custom datatypes (not mapped for reverse engineering)
-			$this -> em -> getConnection() -> getDatabasePlatform() -> registerDoctrineTypeMapping('set', 'string');
-			$this -> em -> getConnection() -> getDatabasePlatform() -> registerDoctrineTypeMapping('enum', 'string');
-			$this -> em -> getConnection() -> getDatabasePlatform() -> registerDoctrineTypeMapping('blob', 'string');
-
-			// fetch metadata
-			$driver = new \Doctrine\ORM\Mapping\Driver\DatabaseDriver($this -> em -> getConnection() -> getSchemaManager());
-
-			$driver -> setNamespace('models\\Entities\\');
-			//set driver implementation
-			$this -> em -> getConfiguration() -> setMetadataDriverImpl($driver);
-
-			$cmf = new \Doctrine\ORM\Tools\DisconnectedClassMetadataFactory($this -> em);
-			$cmf -> setEntityManager($this -> em);
-			$classes = $driver -> getAllClassNames();
-
-			//get class metadata
-			$metadata = $cmf -> getAllMetadata();
-			/*foreach ($classes as $class) {
-			 //any unsupported table/schema could be handled here to exclude some classes
-			 if (true) {
-			 $metadata[] = $cmf->getMetadataFor($class);
-			 //var_dump($metadata);die;
-			 }
-			 }*/
-			//var_dump($metadata);die;
-			$generator = new \Doctrine\ORM\Tools\EntityGenerator();
-			$generator -> setGenerateAnnotations(true);
-			$generator -> setGenerateStubMethods(true);
-			$generator -> setRegenerateEntityIfExists(false);
-			$generator -> setUpdateEntityIfExists(true);
-			try {
-				//var_dump($classes);die;
-				$generator -> generate($metadata, APPPATH . 'models/Entities');
-				print 'Done!';
-			} catch(exception $ex) {
-				die($ex -> getMessage());
-			}
-		}
-
-	
+	}
 
 }

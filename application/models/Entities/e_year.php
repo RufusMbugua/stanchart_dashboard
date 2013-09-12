@@ -3,9 +3,9 @@ namespace models\Entities;
 
 /**
  * @Entity
- * @Table(name="year")
+ * @Table(name="years")
  */
-class E_Year
+class E_Years_
 {
     /**
      * @var integer $yearid
